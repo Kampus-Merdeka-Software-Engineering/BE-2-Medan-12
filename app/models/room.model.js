@@ -15,7 +15,7 @@ import config from '../config/db.config.js'
             allowNull: false,
         },
         img: {
-            type: DataTypes.BLOB('long'),
+            type: DataTypes.STRING,
             allowNull: false,
         },
         status: {

@@ -1,4 +1,4 @@
-import { DataTypes } from 'sequelize';
+                                                                                                                                                           import { DataTypes } from 'sequelize';
 import config from '../config/db.config.js'
 
     const Reserve = config.define('reservation',{

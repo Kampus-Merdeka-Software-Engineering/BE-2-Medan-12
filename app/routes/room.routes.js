@@ -4,9 +4,14 @@ const rmRouter = express.Router();
 
 
 // USER
+rmRouter.get('/', (req, res) => {
+    res.send('Hello Room Route Connected')
+});
 rmRouter.post('/room-post', create);
 rmRouter.put('/:id-room', update);
 rmRouter.get('/room-get', findAll);
 rmRouter.get('/:id-room', findOne);
+rmRouter.get('/:id-room', findOne);
+
 
 export default rmRouter;

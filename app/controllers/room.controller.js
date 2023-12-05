@@ -76,10 +76,10 @@ export function findAll(req, res) {
 
 export function findOne(req, res) {
   rmCospace.findByPk(req.params.id)
-    .then((cs) => {
+    .then((rmcs) => {
     res.json({
         message: "data retrieved successfully.",
-        data: cs,
+        data: rmcs,
     });
     })
     .catch((err) => {

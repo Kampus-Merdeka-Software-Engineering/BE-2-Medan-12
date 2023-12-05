@@ -75,7 +75,6 @@ export function create(req, res) {
       });
     });
 };
-export { _delete as delete };
   
   // Mengambil data sesuai id yang dikirimkan
   export function   findOne(req, res) {

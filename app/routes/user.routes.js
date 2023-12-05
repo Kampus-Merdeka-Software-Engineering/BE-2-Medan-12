@@ -8,6 +8,6 @@ uRouter.post('/user-register', create);
 uRouter.get('/user-get', findAll);
 uRouter.put('/:id-user', update);
 uRouter.delete('/:id-user', _delete);
-uRouter.get('/user-login', findOne);
+uRouter.get('/:id-user-login', findOne);
 
 export default uRouter;
