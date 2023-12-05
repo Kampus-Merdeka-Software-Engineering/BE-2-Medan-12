@@ -1,8 +1,9 @@
-const reserveController = require('../controllers/reserve.controller.js');
-const rsvRouter = require('express').Router();
+import express from 'express';
+import { create, findAll } from '../controllers/reserve.controller.js';
+const rsvRouter = express.Router();
 
 // RESERVE
-rsvRouter.post('/post', reserveController.create);
-rsvRouter.get('/get', reserveController.findAll);
+rsvRouter.post('/reserve-post', create);
+rsvRouter.get('/reserve-get', findAll);
 
-module.exports = rsvRouter;
+export default rsvRouter;

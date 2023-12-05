@@ -1,8 +1,7 @@
-const db = require("../models");
-const Cs = db.uCospace;
+import uCospace from "../models/user.model.js";
 
 // CREATE: untuk menambahkan data kedalam tabel book
-exports.create = (req, res) => {
+export function create(req, res) {
   // validate request
   if (!req.body.name) {
     return res.status(400).send({
@@ -18,7 +17,7 @@ exports.create = (req, res) => {
   };
 
   // proses menyimpan kedalam database
-  Cs.create(cs)
+  uCospace.create(cs)
     .then((data) => {
       res.json({
         message: "data created successfully.",
@@ -32,29 +31,31 @@ exports.create = (req, res) => {
       });
     });
 
-};
+}
 
 // READ: menampilkan atau mengambil semua data sesuai model dari database
-exports.findAll = (req, res) => {
-  Cs.findAll()
-    .then((uCospace) => {
+// Mengambil semua data sesuai model dari database
+export function findAll(req, res) {
+  uCospace.findAll()
+    .then((users) => {
       res.json({
-        message: "data retrieved successfully.",
-        data: uCospace,
+        message: "All users retrieved successfully.",
+        data: users,
       });
     })
     .catch((err) => {
       res.status(500).json({
-        message: err.message || "Some error occurred while retrieving books.",
+        message: err.message || "Some error occurred while retrieving users.",
         data: null,
       });
     });
-};
+}
+
 
 // UPDATE: Merubah data sesuai dengan id yang dikirimkan sebagai params 
-exports.update = (req, res) => {
+export function update(req, res) {
   const id = req.params.id;
-  Cs.update(req.body, {
+  uCospace.update(req.body, {
     where: { id },
   })
     .then((num) => {
@@ -76,12 +77,12 @@ exports.update = (req, res) => {
         data: null,
       });
     });
-};
+}
 
 // DELETE: Menghapus data sesuai id yang dikirimkan
-exports.delete = (req, res) => {
+export function _delete(req, res){
   const id = req.params.id;
-  Cs.destroy({
+  uCospace.destroy({
     where: { id },
   })
     .then((num) => {
@@ -106,18 +107,22 @@ exports.delete = (req, res) => {
 };
 
 // Mengambil data sesuai id yang dikirimkan
-exports.findOne = (req, res) => {
-  Cs.findByPk(req.params.id)
+// Mengambil data sesuai id yang dikirimkan
+export function findOne(req, res) {
+  uCospace.findByPk(req.params.id)
     .then((cs) => {
-      res.json({
+    res.json({
         message: "data retrieved successfully.",
         data: cs,
-      });
+    });
     })
     .catch((err) => {
-      res.status(500).json({
+    res.status(500).json({
         message: err.message || "Some error occurred while retrieving book.",
         data: null,
-      });
     });
-};
+    });
+}
+
+
+

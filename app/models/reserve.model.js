@@ -1,17 +1,22 @@
-module.exports = (sequelize, Sequelize) => {
-    const Reserve = sequelize.define('reservation',{
+import { DataTypes } from 'sequelize';
+import config from '../config/db.config.js'
+
+    const Reserve = config.define('reservation',{
         checkin: {
-            type: Sequelize.DATEONLY,
+            type: DataTypes.DATEONLY,
+            allowNull: false,
         },
         checkout: {
-            type: Sequelize.DATEONLY,
+            type: DataTypes.DATEONLY,
+            allowNull: false,
         },
         type: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         guest: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
+            allowNull: false,
         }
     });
-    return Reserve;
-}
+    export default Reserve;

@@ -1,27 +1,31 @@
-const express = require('express');
-const cors = require('cors');
+import express, { json, urlencoded } from 'express';
+import cors from 'cors';
 const app = express();
 const port = 5000;
 
-const userRoute = require('./app/routes/user.routes.js');
-const rsvRoute = require('./app/routes/reserve.routes.js');
-const db = require('./app/config/db.config.js')
+import userRoute from './app/routes/user.routes.js';
+import rsvRoute from './app/routes/reserve.routes.js';
+import rmRoute from './app/routes/room.routes.js';
 
-const uRouter = require('./app/routes/user.routes.js');
-const rsvRouter = require('./app/routes/reserve.routes.js');
+import db from './app/config/db.config.js';
+
+import uRouter from './app/routes/user.routes.js';
+import rsvRouter from './app/routes/reserve.routes.js';
+import rmRouter from './app/routes/room.routes.js';
 
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(json());
+app.use(urlencoded({ extended: true }));
 
 
 app.get('/', (req, res) => {
     res.send('Server Online');
 });
 
-app.use(`/user`, userRoute);
+app.use('', userRoute);
 
-app.use(`/rsv`, rsvRoute);
+app.use('', rsvRoute);
 
+app.use('', rmRoute);
 
 app.listen(port, () => console.log(`App listening on port http://localhost:${port}!`));

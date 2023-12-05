@@ -1,17 +1,17 @@
-const dbConfig = require('../config/db.config');
-const Sequelize = require('sequelize');
+import { DB, USER, PASSWORD, HOST, dialect as _dialect, pool as _pool } from '../config/db.config';
+import Sequelize from 'sequelize';
 const sequelize = new Sequelize(
-    dbConfig.DB, 
-    dbConfig.USER, 
-    dbConfig.PASSWORD, {
-        host: dbConfig.HOST,
-        dialect: dbConfig.dialect,
+    DB, 
+    USER, 
+    PASSWORD, {
+        host: HOST,
+        dialect: _dialect,
         operatorAlias: false,
         pool: {
-            max: dbConfig.pool.max,
-            min: dbConfig.pool.min,
-            acquire: dbConfig.pool.acquire,
-            idle: dbConfig.pool.idle
+            max: _pool.max,
+            min: _pool.min,
+            acquire: _pool.acquire,
+            idle: _pool.idle
         },
     });
 const db = {};
@@ -19,6 +19,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // define semua models yang ada pada aplikasi
-db.uCospace = require('./user.model.js')(sequelize, Sequelize);
-db.rCospace = require('./reserve.model.js')(sequelize, Sequelize);
-module.exports = db;
+db.uCospace = require('./user.model.js').default(sequelize, Sequelize);
+db.rCospace = require('./reserve.model.js').default(sequelize, Sequelize);
+db.rmCospace = require('./room.model.js').default(sequelize, Sequelize);
+export default db;
