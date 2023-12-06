@@ -9,8 +9,7 @@ rmRouter.get('/', (req, res) => {
 });
 rmRouter.post('/room-post', create);
 rmRouter.put('/:id-room', update);
-rmRouter.get('/room-get', findAll);
-rmRouter.get('/:id-room', findOne);
+rmRouter.get('/rooms', findAll);
 rmRouter.get('/:id-room', findOne);
 
 

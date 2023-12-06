@@ -1,20 +1,20 @@
 import  rmCospace  from "../models/room.model.js";
 
 export function create(req, res) {
+  
+     const rmcs = {
+         type: req.body.type,
+         description: req.body.description,
+         guest: req.body.guest,
+         img: req.body.img,
+         status: req.body.status,
+       };
  
     if (!req.body.type) {
       return res.status(400).send({
         message: "Everything can not be empty",
       });
     }
- 
-    const rmcs = {
-        type: req.body.type,
-        description: req.body.description,
-        guest: req.body.guest,
-        img: req.body.img,
-        status: req.body.status,
-      };
   
     // proses menyimpan kedalam database  
     rmCospace.create(rmcs)
