@@ -19,7 +19,7 @@ import config from '../config/db.config.js'
             type: DataTypes.STRING,
             allowNull: false,
         },
-        status: {
+        price: {
             type: DataTypes.STRING,
             allowNull: false,
         },

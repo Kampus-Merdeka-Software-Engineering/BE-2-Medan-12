@@ -50,31 +50,31 @@ export function create(req, res) {
   }
     
   // DELETE: Menghapus data sesuai id yang dikirimkan
-  const _delete = (req, res) => {
-  const id = req.params.id;
-  rCospace.destroy({
-    where: { id },
-  })
-    .then((num) => {
-      if (num == 1) {
-        res.json({
-          message: "data deleted successfully.",
-          data: req.body,
-        });
-      } else {
-        res.json({
-          message: `Cannot delete book with id=${id}. Maybe book was not found!`,
-          data: req.body,
-        });
-      }
+  export function _delete(req, res){
+    const id = req.params.id;
+    rCospace.destroy({
+      where: { id },
     })
-    .catch((err) => {
-      res.status(500).json({
-        message: err.message || "Some error occurred while deleting the book.",
-        data: null,
+      .then((num) => {
+        if (num == 1) {
+          res.json({
+            message: "data deleted successfully.",
+            data: req.body,
+          });
+        } else {
+          res.json({
+            message: `Cannot delete book with id=${id}. Maybe book was not found!`,
+            data: req.body,
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({
+          message: err.message || "Some error occurred while deleting the book.",
+          data: null,
+        });
       });
-    });
-};
+  };
   
   // Mengambil data sesuai id yang dikirimkan
   export function   findOne(req, res) {

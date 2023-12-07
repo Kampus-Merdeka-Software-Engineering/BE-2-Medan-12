@@ -7,8 +7,8 @@ const rmRouter = express.Router();
 rmRouter.get('/', (req, res) => {
     res.send('Hello Room Route Connected')
 });
-rmRouter.post('/room-post', create);
-rmRouter.put('/:id-room', update);
+rmRouter.post('/room', create);
+rmRouter.put('/:id', update);
 rmRouter.get('/rooms', findAll);
 rmRouter.get('/:id-room', findOne);
 
