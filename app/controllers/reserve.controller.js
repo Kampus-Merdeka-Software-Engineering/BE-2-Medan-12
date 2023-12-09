@@ -2,20 +2,19 @@ import rCospace from "../models/reserve.model.js";
 
 export function create(req, res) {
  
-    if (!req.body.checkin) {
+    if (!req.body.email) {
       return res.status(400).send({
         message: "Everything can not be empty",
       });
     }
  
     const rcs = {
+      email: req.body.email,
       checkin: req.body.checkin,
       checkout: req.body.checkout,
-      type: req.body.type,
       guest: req.body.guest,
     }
   
-    // proses menyimpan kedalam database  
     rCospace.create(rcs)
       .then((data) => {
         res.json({
@@ -32,7 +31,6 @@ export function create(req, res) {
   
   }
   
-  // READ: menampilkan atau mengambil semua data sesuai model dari database
   export function   findAll(req, res) {
     rCospace.findAll()
       .then((rCospace) => {
@@ -49,7 +47,6 @@ export function create(req, res) {
       });
   }
     
-  // DELETE: Menghapus data sesuai id yang dikirimkan
   export function _delete(req, res){
     const id = req.params.id;
     rCospace.destroy({
@@ -76,7 +73,6 @@ export function create(req, res) {
       });
   };
   
-  // Mengambil data sesuai id yang dikirimkan
   export function   findOne(req, res) {
     rCospace.findByPk(req.params.id)
       .then((rcs) => {

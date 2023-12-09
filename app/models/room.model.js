@@ -1,26 +1,25 @@
-import { DataTypes } from 'sequelize';
-import config from '../config/db.config.js'
-// import config from '../config/database.js'
+import Sequelize from 'sequelize';
+import { sequelize } from '../config/db.config.js';
 
-    const Room = config.define('rooms',{
+    const Room = sequelize.define('rooms',{
         type: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false,
         },
         description: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false,
         },
         guest: {
-            type: DataTypes.INTEGER,
+            type: Sequelize.INTEGER,
             allowNull: false,
         },
         img: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false,
         },
         price: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false,
         },
     });

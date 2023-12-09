@@ -1,9 +1,9 @@
 import {Sequelize} from 'sequelize';
 
-const db = new Sequelize('db_cospace','root','',{
+const sequelize = new Sequelize('db_cospace','root','',{
     HOST: '127.0.0.1',
     USER: 'root',
-    PASSWORD: '', // Isi dengan kata sandi database Anda jika ada
+    PASSWORD: '',
     DB: 'db_cospace',
     dialect: 'mysql',
     pool: {
@@ -14,4 +14,4 @@ const db = new Sequelize('db_cospace','root','',{
     },
 });
 
-export default db;
+export { sequelize };

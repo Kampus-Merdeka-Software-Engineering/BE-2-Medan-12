@@ -1,22 +1,17 @@
 import uCospace from "../models/user.model.js";
-
-// CREATE: untuk menambahkan data kedalam tabel book
 export function create(req, res) {
-  // validate request
   if (!req.body.name) {
     return res.status(400).send({
       message: "Title can not be empty",
     });
   };
   
-  // daya yang didapatkan dari inputan oleh pengguna
   const cs = {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
   };
 
-  // proses menyimpan kedalam database
   uCospace.create(cs)
     .then((data) => {
       res.json({
@@ -32,9 +27,34 @@ export function create(req, res) {
     });
 
 }
+export function createL(req, res) {
+  if (!req.body.email) {
+    return res.status(400).send({
+      message: "Title can not be empty",
+    });
+  };
+  
+  const csL = {
+    email: req.body.email,
+    password: req.body.password,
+  };
 
-// READ: menampilkan atau mengambil semua data sesuai model dari database
-// Mengambil semua data sesuai model dari database
+  uCospace.create(csL)
+    .then((data) => {
+      res.json({
+        message: "data created successfully.",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err.message || "Some error occurred while creating the Book.",
+        data: null,
+      });
+    });
+
+}
+
 export function findAll(req, res) {
   uCospace.findAll()
     .then((users) => {
@@ -51,8 +71,6 @@ export function findAll(req, res) {
     });
 }
 
-
-// UPDATE: Merubah data sesuai dengan id yang dikirimkan sebagai params 
 export function update(req, res) {
   const id = req.params.id;
   uCospace.update(req.body, {
@@ -79,7 +97,6 @@ export function update(req, res) {
     });
 }
 
-// DELETE: Menghapus data sesuai id yang dikirimkan
 export function _delete(req, res){
   const id = req.params.id;
   uCospace.destroy({
@@ -106,8 +123,6 @@ export function _delete(req, res){
     });
 };
 
-// Mengambil data sesuai id yang dikirimkan
-// Mengambil data sesuai id yang dikirimkan
 export function findOne(req, res) {
   uCospace.findByPk(req.params.id)
     .then((cs) => {

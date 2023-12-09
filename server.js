@@ -4,8 +4,10 @@ import cors from 'cors';
 import userRoute from './app/routes/user.routes.js';
 import rsvRoute from './app/routes/reserve.routes.js';
 import rmRoute from './app/routes/room.routes.js';
+import userLogin from './app/routes/user.login.js'
 
-import db from './app/config/db.config.js';
+import { sequelize } from './app/config/db.config.js';
+
 
 const app = express();
 const port = 5000;
@@ -20,17 +22,18 @@ app.get('/', (req, res) => {
     console.log('Welcome');
 });
 
+
+app.use('/user', userLogin)
 app.use('/user', userRoute);
 app.use('/reserve', rsvRoute);
 app.use('/room', rmRoute);
 
-db.sync({alter: true})
+sequelize.sync({alter: true})
 .then(()=>{ app.listen(port, () => 
     console.log(`App listening on port http://localhost:${port}!`));
 })
 .catch((err)=>{
     console.log(err)
 })
-
 
 

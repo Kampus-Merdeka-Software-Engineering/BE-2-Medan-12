@@ -18,7 +18,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// define semua models yang ada pada aplikasi
+
 db.uCospace = require('./user.model.js').default(sequelize, Sequelize);
 db.rCospace = require('./reserve.model.js').default(sequelize, Sequelize);
 db.rmCospace = require('./room.model.js').default(sequelize, Sequelize);

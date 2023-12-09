@@ -1,7 +1,12 @@
-                                                                                                                                                           import { DataTypes } from 'sequelize';
-import config from '../config/db.config.js'
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../config/db.config.js';
 
-    const Reserve = config.define('reservation',{
+const Reserve = sequelize.define('reservations',{
+        
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         checkin: {
             type: DataTypes.DATEONLY,
             allowNull: false,
@@ -9,11 +14,7 @@ import config from '../config/db.config.js'
         checkout: {
             type: DataTypes.DATEONLY,
             allowNull: false,
-        },
-        type: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        }, 
         guest: {
             type: DataTypes.INTEGER,
             allowNull: false,

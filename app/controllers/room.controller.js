@@ -1,4 +1,5 @@
 import  rmCospace  from "../models/room.model.js";
+import { sequelize } from '../config/db.config.js';
 
 export function create(req, res) {
   
@@ -16,7 +17,6 @@ export function create(req, res) {
       });
     }
   
-    // proses menyimpan kedalam database  
     rmCospace.create(rmcs)
       .then((data) => {
         res.json({
@@ -88,4 +88,29 @@ export function findOne(req, res) {
         data: null,
     });
     });
+}
+
+export async function findRoomsByType(req, res) {
+  try {
+    const { type } = req.params; // Assuming the type is provided in the URL parameters
+
+    if (!type) {
+      return res.status(400).json({ message: 'Type parameter is missing.' });
+    }
+
+    const query = `
+      SELECT * FROM rooms
+      WHERE type = :type
+    `;
+
+    const [rooms, metadata] = await sequelize.query(query, {
+      replacements: { type },
+      type: sequelize.QueryTypes.SELECT,
+    });
+
+    res.json({ data: rooms });
+  } catch (error) {
+    console.error('Error executing raw SQL query:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 }
