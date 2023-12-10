@@ -166,5 +166,24 @@ export async function login(req, res) {
   }
 }
 
+export async function account(req, res) {
+  try {
+    const userId = parseInt(req.params.id);
+
+    // Assuming that you have a Sequelize model named uCospace
+    const user = await uCospace.findByPk(userId);
+
+    if (user) {
+      // Sending user profile data
+      res.status(200).json({ data: { id: user.id, name: user.name, email: user.email } });
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 
 

@@ -18,6 +18,10 @@ const Reserve = sequelize.define('reservations',{
         guest: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        roomId: {
+            type: DataTypes.INTEGER,
+            allowNull: true        
         }
     });
     export default Reserve;

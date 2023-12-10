@@ -4,7 +4,6 @@ import cors from 'cors';
 import userRoute from './app/routes/user.routes.js';
 import rsvRoute from './app/routes/reserve.routes.js';
 import rmRoute from './app/routes/room.routes.js';
-import userLogin from './app/routes/user.login.js'
 
 import { sequelize } from './app/config/db.config.js';
 
