@@ -3,7 +3,7 @@ import { sequelize } from '../config/db.config.js';
 
 const Reserve = sequelize.define('reservations',{
         
-        name: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
         },

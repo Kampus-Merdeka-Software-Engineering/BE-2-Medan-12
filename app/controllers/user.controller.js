@@ -1,4 +1,6 @@
 import uCospace from "../models/user.model.js";
+import { sequelize } from '../config/db.config.js';
+
 export function create(req, res) {
   if (!req.body.name) {
     return res.status(400).send({
@@ -137,6 +139,31 @@ export function findOne(req, res) {
         data: null,
     });
     });
+}
+export async function login(req, res) {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email and password are required' });
+    }
+
+    const query = 'SELECT id, name, email, password FROM users WHERE email = ? AND password = ?';
+    const results = await sequelize.query(query, {
+      replacements: [email, password],
+      type: sequelize.QueryTypes.SELECT,
+    });
+
+    if (results.length === 1) {
+      const user = results[0];
+      return res.status(200).json({ user, message: 'Login successful' });
+    } else {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 }
 
 

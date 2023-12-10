@@ -23,7 +23,6 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/user', userLogin)
 app.use('/user', userRoute);
 app.use('/reserve', rsvRoute);
 app.use('/room', rmRoute);
