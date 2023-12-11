@@ -6,12 +6,11 @@ import rsvRoute from './app/routes/reserve.routes.js';
 import rmRoute from './app/routes/room.routes.js';
 
 import { sequelize } from './app/config/db.config.js';
-
+dotenv.config();
 
 const app = express();
-const port = process.env.DB_PORT||process.env.PORT;
+const port = 5000;
 
-dotenv.config();
 app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
