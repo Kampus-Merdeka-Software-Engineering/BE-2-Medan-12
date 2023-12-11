@@ -9,7 +9,7 @@ import { sequelize } from './app/config/db.config.js';
 
 
 const app = express();
-const port = process.env.PORT||5000;
+const port = process.env.DB_PORT||PORT;
 
 app.use(cors());
 app.use(json());
