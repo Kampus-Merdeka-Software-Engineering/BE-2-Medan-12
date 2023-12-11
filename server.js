@@ -18,7 +18,6 @@ app.use(urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.send('Server Online');
-    console.log('Welcome');
 });
 
 

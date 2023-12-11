@@ -148,7 +148,7 @@ export async function login(req, res) {
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    const query = 'SELECT id, name, email, password FROM users WHERE email = ? AND password = ?';
+    const query = 'SELECT id, name, email, password FROM Users WHERE email = ? AND password = ?';
     const results = await sequelize.query(query, {
       replacements: [email, password],
       type: sequelize.QueryTypes.SELECT,
@@ -170,11 +170,10 @@ export async function account(req, res) {
   try {
     const userId = parseInt(req.params.id);
 
-    // Assuming that you have a Sequelize model named uCospace
+
     const user = await uCospace.findByPk(userId);
 
     if (user) {
-      // Sending user profile data
       res.status(200).json({ data: { id: user.id, name: user.name, email: user.email } });
     } else {
       res.status(404).json({ error: 'User not found' });

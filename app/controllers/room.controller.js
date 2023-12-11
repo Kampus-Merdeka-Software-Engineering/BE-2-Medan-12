@@ -92,7 +92,7 @@ export function findOne(req, res) {
 
 export async function findRoomsByType(req, res) {
   try {
-    const { type } = req.params; // Assuming the type is provided in the URL parameters
+    const { type } = req.params;
 
     if (!type) {
       return res.status(400).json({ message: 'Type parameter is missing.' });
