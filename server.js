@@ -1,5 +1,6 @@
 import express, { json, urlencoded } from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import userRoute from './app/routes/user.routes.js';
 import rsvRoute from './app/routes/reserve.routes.js';
@@ -9,7 +10,7 @@ import { sequelize } from './app/config/db.config.js';
 
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT||5000;
 
 app.use(cors());
 app.use(json());
