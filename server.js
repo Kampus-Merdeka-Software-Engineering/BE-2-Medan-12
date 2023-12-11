@@ -20,7 +20,6 @@ app.get('/', (req, res) => {
     res.send('Server Online');
 });
 
-
 app.use('/user', userRoute);
 app.use('/reserve', rsvRoute);
 app.use('/room', rmRoute);
