@@ -1,6 +1,5 @@
 import express, { json, urlencoded } from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 
 import userRoute from './app/routes/user.routes.js';
 import rsvRoute from './app/routes/reserve.routes.js';
